@@ -23,6 +23,9 @@ font pango:monospace 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
 
+# Wallpaper script
+exec_always --no-startup-id ~/.config/scripts/feh_random_wallpaper.sh ~/Pictures/Wallpapers 180
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -48,9 +51,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id exec brightnessctl -q set 5%-
 floating_modifier $mod
 
 # Setup gaps
-gaps inner 3
+gaps inner 2
 #smart_gaps on
 
+# Window borders setup
+default_border pixel 1
+default_floating_border pixel 1
+smart_borders on
+#hide_edge_borders vertical
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -210,4 +218,5 @@ bar {
     binding_mode       #b691d3 #A07CBC #FFFFFF
   }
   status_command i3status --config ~/.config/i3/i3status.conf
+  position top
 }
