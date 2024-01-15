@@ -4,6 +4,7 @@
 alias mkdir='mkdir -p'
 alias vim='nvim'
 alias vi='nvim'
+alias nv='nvim'
 alias ping='ping -c 10'
 alias cls='clear'
 alias cd..='cd ..'
