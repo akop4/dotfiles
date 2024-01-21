@@ -13,7 +13,8 @@
 - command can show HA usage in section *Video*
 
 ```bash sudo intel_gpu_top```
-
+- Command  *vainfo* can show current driver settings and supported codecs
+```bash vainfo```
 - Hardware acceleration works:
   - [x] Chromium - better
   - [x] Firefox
