@@ -59,3 +59,6 @@ lazyg() {
     git commit -m "$1"
     git push
 }
+
+# Test hardware acceleration in browser
+# export LIBVA_DRIVER_NAME=iHD
