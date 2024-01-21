@@ -10,6 +10,10 @@
 - Intel i3-6006u
 - Gen 9 Intel graphics
 - HA in my case only work with modesetting driver
+- command can show HA usage in section *Video*
+
+```bash sudo intel_gpu_top```
+
 - Hardware acceleration works:
   - [x] Chromium - better
   - [x] Firefox
