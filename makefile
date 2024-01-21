@@ -7,3 +7,4 @@ all:
 
 delete:
 	stow --verbose --target=$$HOME --delete */
+
