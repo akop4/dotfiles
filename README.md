@@ -10,15 +10,19 @@
 - Intel i3-6006u
 - Gen 9 Intel graphics
 - HA in my case only work with modesetting driver
-- command can show HA usage in section *Video*
+- Command can show HA usage in section *Video*
 
 ```bash sudo intel_gpu_top```
+
 - Command  *vainfo* can show current driver settings and supported codecs
+
 ```bash vainfo```
+
 - Hardware acceleration works:
-  - [x] Chromium - better
-  - [x] Firefox
-  - [ ] Brave - not work ):
+  - [x] Chromium - -Better- Very often video freezes :(
+  - [x] Firefox - Better stability. I have only one freeze.
+  - [x] Brave - -not work ):- Hardware acceleration work with flag *--enable-features=VaapiVideoDecodeLinuxGL*
+  Freezes like chromium all time.
   - [ ] Chrome - didn't try
 ### Links
 - [Arch wiki - Intel graphics](https://wiki.archlinux.org/title/intel_graphics)
