@@ -11,19 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-
 -- Put path to lazy.nvim in run time path
 vim.opt.rtp:prepend(lazypath)
-
 -- Declare options for lazy
 local function lazy_options()
-    return ({
+    return({
         lockfile = vim.fn.stdpath("config") .. "/lua/lazy_bootstrap/lazy_lock.json",
 
         install = {
-            -- try to load one of these colorschemes when starting an installation during startup
             colorscheme = { 
-                -- color_my_pencils, 
                 "habamax", 
             },
         },
@@ -31,22 +27,21 @@ local function lazy_options()
         performance = {
             rtp = {
                 disabled_plugins = {
-                    -- "gzip",
-                    -- "matchit",
-                    -- "matchparen",
+                    "gzip",
+                    "matchit",
+                    "matchparen",
                     -- "netrwPlugin",
-                    -- "tarPlugin",
-                    -- "tohtml",
+                    "tarPlugin",
+                    "tohtml",
                     "tutor",
-                    -- "zipPlugin",
+                    "zipPlugin",
                 },
             },
         },
     })
 end
-
 -- Start lazy
 require("lazy").setup(
     "plugins",
-    lazy_opts
+    lazy_options()
 )

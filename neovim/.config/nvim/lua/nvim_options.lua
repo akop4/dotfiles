@@ -19,6 +19,9 @@ vim.opt.scrolloff = 10
 vim.opt.virtualedit = "block"
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.termguicolors = true
+vim.opt.hlsearch = false
+vim.opt.signcolumn = 'yes'
 -- Declare defaul colorscheme name
 color_my_pencils = "tokyonight"
