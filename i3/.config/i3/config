@@ -127,14 +127,14 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
+set $ws1 "1:work"
+set $ws2 "2:web"
+set $ws3 "3:code"
+set $ws4 "4:chat"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
+set $ws8 "8:game"
 set $ws9 "9"
 set $ws10 "0"
 
@@ -219,13 +219,14 @@ bar {
     urgent_workspace   #EC69A0 #DB3279 #FFFFFF
     binding_mode       #b691d3 #A07CBC #FFFFFF
   }
-  status_command i3status --config ~/.config/i3/i3status.conf
+  status_command i3status --transparency --config ~/.config/i3/i3status.conf
   position top
 }
 
-assign [class="^firefox$"] 2
-assign [class="^TelegramDesktop$"] 4
-assign [class="^discord$"] 4
-assign [class="^org.remmina.Remmina$"] 1
-assign [class="^steam$"] 8
+assign [class="^firefox$"] "2:web"
+assign [class="^TelegramDesktop$"] "4:chat"
+assign [class="^discord$"] "4:chat"
+assign [class="^org.remmina.Remmina$"] "1:work"
+assign [class="^steam$"] "8:game"
+
 focus_on_window_activation smart
