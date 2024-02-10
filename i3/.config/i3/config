@@ -222,3 +222,10 @@ bar {
   status_command i3status --config ~/.config/i3/i3status.conf
   position top
 }
+
+assign [class="^firefox$"] 2
+assign [class="^TelegramDesktop$"] 4
+assign [class="^discord$"] 4
+assign [class="^org.remmina.Remmina$"] 1
+assign [class="^steam$"] 8
+focus_on_window_activation smart
