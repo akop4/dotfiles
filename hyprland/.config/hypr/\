@@ -54,9 +54,7 @@ input {
     touchpad {
         natural_scroll = true
         disable_while_typing = true
-        # middle_button_emulation = false
-        # clickfinger_behavior = false
-        # tap-to-click = true
+        #middle_button_emulation = true
     }
 
     sensitivity = 0 # -1.0 to 1.0, 0 means no modification.
@@ -118,14 +116,14 @@ master {
     new_is_master = true
 }
 
-# gestures {
+gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    # workspace_swipe = true
-    # workspace_swipe_fingers = 3
-    # workspace_swipe_cancel_ratio = 0.3
-    # workspace_swipe_distance = 100
-    # workspace_swipe_min_speed_to_force = 15
-# }
+    workspace_swipe = true
+    workspace_swipe_fingers = 3
+    workspace_swipe_cancel_ratio = 0.3
+    #workspace_swipe_distance = 150
+    #workspace_swipe_min_speed_to_force = 15
+}
 
 misc {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -141,12 +139,6 @@ binds {
 device {
     name = epic-mouse-v1
     sensitivity = -0.5
-}
-
-device {
-    name = synps/2-synaptics-touchpad
-    sensitivity = -0.5
-    middle_button_emulation=0
 }
 
 # Example windowrule v1
@@ -218,4 +210,3 @@ bind = $mainMod, mouse_up, workspace, e-1
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
-
