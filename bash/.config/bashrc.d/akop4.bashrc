@@ -18,7 +18,9 @@
 
 # Import flatpak programs in path
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
-
+export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
+export PATH=$PATH:"$HOME/.local/scripts/"
+bind '"\C-f":"tmux-sessionizer.sh\n"'
 #iatest=$(expr index "$-" i)
 
 # Ignore case on auto-completion
