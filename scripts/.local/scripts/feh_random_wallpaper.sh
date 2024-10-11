@@ -3,6 +3,6 @@
 # https://bbs.archlinux.org/viewtopic.php?pid=1626816#p1626816
 
 while true; do
-  feh --randomize --no-fehbg --bg-fill $1/*
-  sleep $2
+  swaybg -i "$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1)" -m center -c 1a1b26
+  sleep 6
 done
