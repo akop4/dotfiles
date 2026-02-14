@@ -10,4 +10,5 @@ alias cls='clear'
 alias cd..='cd ..'
 alias ls='ls -lh --color=auto'
 alias ll='ls -alh --color=auto' 
+alias ff='fastfetch' 
 # alias brave-browser="brave-browser --enable-features=VaapiVideoDecodeLinuxGL"

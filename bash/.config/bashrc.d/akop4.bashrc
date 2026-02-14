@@ -20,6 +20,9 @@
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
 export PATH=$PATH:"$HOME/.local/scripts/"
+# Import go programs in path
+export PATH=$PATH:$HOME/go/bin
+
 bind '"\C-f":"tmux-sessionizer.sh\n"'
 #iatest=$(expr index "$-" i)
 
@@ -33,6 +36,8 @@ bind '"\C-f":"tmux-sessionizer.sh\n"'
 # Set the default editor
 export EDITOR=nvim
 export VISUAL=nvim
+
+export MOZ_ENABLE_WAYLAND=1
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 #export CLICOLOR=1
