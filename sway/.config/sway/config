@@ -8,42 +8,82 @@ set $down j
 set $up k
 set $right l
 set $term kitty
-set $menu wofi --show drun
+# set $menu wofi --show drun
+set $menu rofi -terminal '$term' -show combi -combi-modes drun#run -modes combi
 set $laptop_display "eDP-1"
 set $laptop_display_touch "1386:21256:Wacom_HID_5308_Finger"
+set $laptop_pen "1386:21256:Wacom_HID_5308_Pen"
 
 ### Executions
 
-exec swaybg -i "$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1)" -m fill -c 1a1b26
+exec {
+    swaybg -i "$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1)" -m fill -c 1a1b26
+    ~/.local/scripts/sway_display_lid.sh
+    ~/.local/scripts/sway_display_orientation.sh
+    # swayidle -w
+}
 
-exec_always ~/.local/scripts/sway_monitors_lid.sh
+exec_always systemctl --user start sway-session.target
 
-exec swayidle -w
-
-exec gammastep
+# exec gammastep
 
 ### Laptop lid
 
-bindswitch --reload --locked lid:on output $laptop_display disable
-bindswitch --reload --locked lid:off output $laptop_display enable
+bindswitch --reload --locked {
+    lid:on output $laptop_display disable
+    lid:off output $laptop_display enable
+}
 
 ### Output configuration
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# output "*" bg "#002244" solid_color
 
-output $laptop_display scale 1
+output $laptop_display {
+    scale 1
+    # allow_tearing yes
+    # max_render_time off
+}
 
 ### Input configuration
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 
 input $laptop_display_touch map_to_output $laptop_display
+# input $laptop_pen map_to_output $laptop_display
 
-input "type:keyboard" {
+input type:keyboard {
     xkb_layout us,ru
     xkb_variant ,
     xkb_model pc104
     xkb_options grp:win_space_toggle,caps:none
 }
 
+input type:touchpad {
+    tap enabled
+    natural_scroll disabled
+    clickfinger_button_map lrm
+    drag disabled
+    drag_lock disabled
+    dwt enable
+    scroll_method two_finger
+    scroll_factor 2.0
+    # pointer_accel -0.1
+}
+
+# input $laptop_pen {
+#     # tool_mode pen relative
+#     # tool_mode pen absolute
+#     # pointer_accel 0.0
+#     # accel_profile flat
+#     # scroll_factor 1.0
+# }
+
+input type:pointer {
+    pointer_accel -0.5
+}
+
+input '2:10:TPPS/2_Elan_TrackPoint' {
+    pointer_accel -0.6
+}
 ### Workspaces and apps
 
 workspace 1
@@ -57,6 +97,8 @@ workspace 8
 workspace 9
 workspace 10
 
+workspace back_and_forth yes
+
 # assign windows to specific workspace by using the app_id
 # swaymsg -t get_tree
 assign [app_id="kitty"] workspace 1
@@ -65,7 +107,23 @@ assign [app_id="org.mozilla.firefox"] workspace 2
 assign [app_id="org.telegram.desktop"] workspace 3
 assign [app_id="org.remmina.Remmina"] workspace 4
 # TODO add floating for password prompt when open from browser
-assign [app_id="org.keepassxc.KeePassXC"] workspace 5
+# assign [app_id="org.keepassxc.KeePassXC"] workspace 5
+# assign [title='Unlock Database - KeePassXC'] workspace 5
+
+# for_window [app_id="org.keepassxc.KeePassXC" title="Unlock Database - KeePassXC"] {
+#     floating enable
+# }
+for_window [class="^(steam$)" title="^(?!Steam$)"] floating enable
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_type = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"] floating enable
+for_window [title = "Administrator privileges required"] floating enable
 
 ### Key bindings
 
@@ -116,6 +174,7 @@ bindsym --to-code {
     $mod+8 workspace number 8
     $mod+9 workspace number 9
     $mod+0 workspace number 10
+    $mod+tab workspace back_and_forth
 }
 
 bindsym --to-code {
@@ -167,7 +226,7 @@ bindsym --to-code $mod+r mode "resize"
 default_border pixel 2
 default_floating_border pixel 2
 # gaps inner 5000
-
+hide_edge_borders --i3 smart
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
