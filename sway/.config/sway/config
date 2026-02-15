@@ -39,7 +39,7 @@ bindswitch --reload --locked {
 # output "*" bg "#002244" solid_color
 
 output $laptop_display {
-    scale 1
+    scale 1.25
     # allow_tearing yes
     # max_render_time off
 }
