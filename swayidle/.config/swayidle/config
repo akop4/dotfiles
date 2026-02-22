@@ -2,5 +2,5 @@
 timeout 600 'brightnessctl -s set 15%' resume 'brightnessctl -r'
 timeout 600 'ddcutil --sn=2794JQ2 setvcp 10 0' resume 'ddcutil --sn=2794JQ2 setvcp 10 10'
 timeout 2700 'swaylock -f'
-timeout 3600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+timeout 3600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
 before-sleep 'playerctl pause; swaylock -f'
