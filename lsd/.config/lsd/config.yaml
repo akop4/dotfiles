@@ -12,7 +12,8 @@ blocks:
 
 # Color
 color:
-  when: auto
+  # when: auto
+  theme: custom
 
 # Icons
 icons:
