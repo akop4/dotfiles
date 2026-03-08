@@ -231,7 +231,7 @@ scrollbar trough {
 }
 
 .widget-mpris-album-art {
-  -gtk-icon-size: 100px;
+  /* -gtk-icon-size: 100px; */
   border-radius: 12.6px;
   margin: 0 10px;
 }
@@ -254,7 +254,7 @@ scrollbar trough {
 }
 
 .widget-mpris button image {
-  -gtk-icon-size: 1.8rem;
+  /* -gtk-icon-size: 1.8rem; */
 }
 
 .widget-mpris button:hover {
