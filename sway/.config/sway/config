@@ -1,5 +1,7 @@
 # include ~/.config/sway/config.d/catppuccin-mocha
 
+xwayland enable
+
 ### Variables
 
 set $mod Mod1
@@ -20,7 +22,6 @@ exec {
     swaybg -i "$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1)" -m fill -c 1a1b26
     ~/.local/scripts/sway_display_lid.sh
     ~/.local/scripts/sway_display_orientation.sh
-    # swayidle -w
 }
 
 exec_always systemctl --user start sway-session.target
@@ -78,7 +79,7 @@ input type:touchpad {
 # }
 
 input type:pointer {
-    pointer_accel -0.5
+    pointer_accel -0.3
 }
 
 input '2:10:TPPS/2_Elan_TrackPoint' {
@@ -106,6 +107,7 @@ assign [app_id="brave-browser"] workspace 2
 assign [app_id="org.mozilla.firefox"] workspace 2
 assign [app_id="org.telegram.desktop"] workspace 3
 assign [app_id="org.remmina.Remmina"] workspace 4
+assign [app_id="Thunar"] workspace 5
 # TODO add floating for password prompt when open from browser
 # assign [app_id="org.keepassxc.KeePassXC"] workspace 5
 # assign [title='Unlock Database - KeePassXC'] workspace 5
