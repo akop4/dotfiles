@@ -1,0 +1,44 @@
+{
+    "clock#time": {
+        "format": " {:%R (%z)}",
+        "min-lenght": 15,
+        "max-lenght": 15,
+        "interval": 1,   
+        "timezones": [
+            "Europe/Moscow",
+            "Europe/London",
+            "Europe/Rome"
+        ],
+        "tooltip-format": "{tz_list}",
+        "locale": "en_GB"
+    },
+
+    "clock#date": {
+        "format": "󰸗 {:%F (%a)}",
+        "interval": 60,   
+        "tooltip-format": "{calendar}",
+        "locale": "en_GB",
+        "min-lenght": 18,
+        "max-lenght": 18,
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 6,
+            "format": {
+                "months"    : "<span color='#ffead3'><b>{}</b></span>",
+                "days"      : "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks"     : "<span color='#99ffdd'><b>W{:%W}</b></span>",
+                "weekdays"  : "<span color='#ffcc66'><b>{}</b></span>",
+                "today"     : "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode"
+        }
+    },
+
+    "group/time-date": {
+        "orientation": "horizontal",
+        "modules": ["clock#time", "clock#date"]
+    }
+
+}

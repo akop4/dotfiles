@@ -1,222 +1,145 @@
-// -*- mode: jsonc -*-
-[{
-    // "output": ["DP-1", "eDP-2"],
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": [
-        "sway/workspaces",
-        // "cava",
-        "sway/mode",
-        "sway/scratchpad"
+{
+    "include": [
+        "~/.config/waybar/modules/*.jsonc",
+        "~/.config/waybar/modules/sway/*.jsonc"
     ],
-    // "modules-center": [
-        // "sway/window"
-    // ],
-    "modules-right": [
-        // "mpris",
-        // "idle_inhibitor",
-        // "load",
-        "temperature",
-        "backlight",
-	    "wireplumber",
-        "clock",
-        "battery",
-        "sway/language",
-        "tray"
-    ],
-    // Modules configuration
-    // "hyprland/workspaces": {
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "enable-bar-scroll": true,
-    //     "disable-scroll-wraparound": true,
-    //     "format": "{icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "9": "",
-    //         "10": ""
-    //     }
-    // },
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 40,
-        "all-outputs": true
+
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["group/time-date"],
+    "modules-right": ["tray", "sway/language", "group/hardware-sensors"],
+
+    "sway/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "󰈹",
+            "3": "",
+            "4": "",
+            "9": "",
+            "10": "",
+            "urgent": "",
+            "focused": "",
+            "default": "",
+            "empty": "",
+            "high-priority-named": ["1", "2", "3", "4", "9", "10"]
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            // "5": [],
+            // "6": [],
+            // "7": [],
+            // "8": [],
+            // "9": [],
+            // "10": [],
+        }
     },
-    "sway/language": {
-        "format": "{short}"
-    },
-    "cava": {
-	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-	"framerate": 30,
-	"autosens": 1,
-	"bars": 14,
-	"lower_cutoff_freq": 50,
-	"higher_cutoff_freq": 10000,
-	"method": "pipewire",
-	"source": "auto",
-	"stereo": true,
-	"bar_delimiter": 0,
-	"noise_reduction": 0.77,
-	"input_delay": 2,
-        "hide_on_silence": true,
-	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-	"actions": {
-	    "on-click-right": "mode"
-	}
-    },
-    "mpris": {
- 	"format": " {status_icon} {dynamic}",
-        "interval": 1,
-        "dynamic-len": 40,
-	"status-icons": {
-		"playing": "▶",
-		"paused": "⏸",
-		"stopped": ""
-	},
-	"dynamic-order": ["title", "artist"],
-	// "ignored-players": ["firefox"]
-    },
-    // "idle_inhibitor": {
-    //     "format": "{icon}",
-    //     "format-icons": {
-    //         "activated": "",
-    //         "deactivated": ""
-    //     }
-    // },
+
     "sway/mode": {
-        "format": "{}"
+        "format": "<span style=\"italic\">{}</span>",
+        "tooltip": false,
     },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
+
+    "network": {
+        "interval":30,
+        "format-wifi": "{icon}",
+        "format-ethernet":"󰌘",
+        "format-disabled":"",
+        "format-disconnected":"󰤭",
+        "format-icons":[
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨",
+        ],
+        "tooltip-format-disconnected": "Disconnected",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "on-click-right": "kitty nmtui"
+    },
+
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-connected": "󰂱",
+        "format-off": "󰂲",
+        "format-disabled": "",
+        "format-connected-battery": "{icon}",
+        "format-icons": [ "󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈" ],
+        "format-device-preference": [
+            "realme Buds Air6 Pro",
+            "WH-1000XM4",
+            "G603"
+        ],
+        "tooltip-format": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias} ({device_battery_percentage}%)",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+        "on-click-right": "blueman-manager"
+    }, 
+
+    "cpu": {
+        "interval": "10",
+        "format": "󰻠 {usage}%",
+        "format-alt": "󰻠 {icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "states": {
+            "full": 90,
+            "medium": 50,
+            "free": 0
+        },
+        "on-click-right": "kitty btop",
+        "tooltip": true
+    },
+
+    "memory": {
+        "interval": "10",
+        "format": " {percentage}%",
+        "format-alt": " {used:0.1f}G/{total:0.1f}G",
+        "states": {
+            "full": 90,
+            "medium": 50,
+            "free": 0
+        },
+        "on-click-right": "kitty btop",
+        // "tooltip": false
+        "tooltip-format": "Used      | {used:0.1f}G\nTotal     | {total:0.1f}G\nAvailable | {avail:0.1f}G",
+    },
+
+    "temperature": {
+        "warning-threshold": 0,
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}󰔄",
+        "format-critical": "{icon} {temperatureC}󰔄",
+        "format-icons": [ "", "", "", "", ""],
         "tooltip": true,
-        "tooltip-format": "{app}: {title}"
+        "tooltip-format": "{temperatureC}󰔄\n{temperatureF}󰔅\n{temperatureK}󰔆",
+
     },
+
+    "group/hardware-sensors": {
+        "orientation": "horizontal",
+        "modules": ["backlight", "cpu","memory","temperature", "bluetooth", "network", "battery"]
+    },
+
+    "sway/language": {
+        "format": "{short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip":false
+    },
+
     "tray": {
-        "icon-size": 14,
+        "icon-size": 15,
         "spacing": 10
     },
-    "load": {
-        "format": " {}"
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-        "critical-threshold": 60,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
+
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-full": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "wireplumber": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "format": "{icon}",
+        "format-icons": [ "", "", "", "", "", "", "", "", ""],
+        "tooltip-format": "Backlight"
     }
-// },{
-//     "output": ["HDMI-A-1"],
-//     // "layer": "top", // Waybar at top layer
-//     // "position": "bottom", // Waybar position (top|bottom|left|right)
-//     "height": 24, // Waybar height (to be removed for auto height)
-//     // "width": 1280, // Waybar width
-//     "spacing": 4, // Gaps between modules (4px)
-//     // Choose the order of the modules
-//     "modules-left": [
-//         "hyprland/workspaces",
-//         "hyprland/mode",
-//         "hyprland/scratchpad"
-//     ],
-//     "modules-center": [
-//         "clock"
-//     ],
-//     "modules-right": [
-//         "hyprland/window"
-//     ],
-//     "hyprland/workspaces": {
-//         "all-outputs": true,
-//         "warp-on-scroll": true,
-//         "enable-bar-scroll": true,
-//         "format": "{icon}",
-//         "format-icons": {
-//             "1": "",
-//             "2": "",
-//             "3": "",
-//             "4": "",
-//             "5": "",
-//             "9": "",
-//             "10": ""
-//         }
-//     },
-//     "hyprland/window": {
-//         "format": "{title}",
-//         "max-length": 40,
-//         "all-outputs": true
-//     },
-//     "hyprland/mode": {
-//         "format": "{}"
-//     },
-//     "hyprland/scratchpad": {
-//         "format": "{icon} {count}",
-//         "show-empty": false,
-//         "format-icons": ["", ""],
-//         "tooltip": true,
-//         "tooltip-format": "{app}: {title}"
-//     },
-//     "clock": {
-//         // "timezone": "America/New_York",
-//         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-//         "format-alt": "{:%Y-%m-%d}"
-//     }
-}]
+}
